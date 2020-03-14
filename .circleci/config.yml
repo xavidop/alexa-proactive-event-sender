@@ -42,6 +42,7 @@ jobs:
             source $ARTIFACT_VERSION \;
           when: always
       - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
+      - run: mvn -s .circleci/settings.xml deploy
       - persist_to_workspace:
           root: ./
           paths:

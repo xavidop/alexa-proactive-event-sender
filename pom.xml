@@ -8,6 +8,13 @@
     <artifactId>alexa-proactive-event-sender</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <distributionManagement>
+        <repository>
+            <id>github-alexa-proactive-event-sender</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/xavidop/alexa-proactive-event-sender</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <java.version>1.8</java.version>
