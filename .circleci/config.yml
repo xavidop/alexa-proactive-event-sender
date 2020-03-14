@@ -15,8 +15,6 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
-
     environment:
       # Customize the JVM maximum heap limit
       MAVEN_OPTS: -Xmx3200m
@@ -45,7 +43,7 @@ jobs:
           when: always
       - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
       - persist_to_workspace:
-          root: ~/repo
+          root: ./
 
   publish-github-release:
     docker:
