@@ -7,8 +7,8 @@
 This project aims at simplifying sending proactive events to a skill from an external java process. 
 
 This code performs the following operations:
-1. Obtains an authentication token from Alexa by using the skill's ```client_id``` and ```client_secret```. You can obtain these in the Build Tab - Permissions section of your skill in the Alexa developer console (if they are not visible try enabling a permission such as reminder and then disable it).
-2. Uses the authentication token obtained in the previous step to *multicast* notifications to those users of the skill that granted permissions to notifications in the Alexa app. Sends events following the [```AMAZON.MessageAlert.Activated```](https://developer.amazon.com/docs/smapi/schemas-for-proactive-events.html#message-alert) schema.
+1. Obtains an authentication token from Alexa by using the skill's ```client_id``` and ```client_secret```. You can obtain these in the Build Tab - Permissions section of your skill in the Alexa developer console.
+2. Uses the authentication token obtained in the previous step to *broadcast* notifications to those users of the skill that granted permissions to notifications in the Alexa app. Sends events following the [```AMAZON.MessageAlert.Activated```](https://developer.amazon.com/docs/smapi/schemas-for-proactive-events.html#message-alert) schema.
 
 ### Adding proactive events to your skill
 
@@ -64,7 +64,7 @@ How to install these two tools goes beyond the scope of this document.
 
 ### Install
 
-To download project dependencies simply run the following in the project root:
+To download project dependencies simply add this dependency to your ```pom.xml``` file:
 
 ```xml
     <dependency>
@@ -95,7 +95,7 @@ After added the dependecy you can use the client as below:
 ```
     
 * ```Environment```: whether the target events will be sent to the ```live``` or ```development``` endpoints. Allowed values are ```dev``` and ```pro```.
-* ```Region```: identifies the region of the Alexa endpoint to use to send proactive events. Allowed values are ```EU``` (Europe), ```NA``` (North America) and ```FE``` (Far East). **Remember**: if your users are located in NA and you are sending events trough the EU endpoint, users located in NA won't receive any notification. If you're using an Alexa Hosted Skill set the endpoint to NA or EU.
+* ```Region```: identifies the region of the Alexa endpoint to use to send proactive events. Allowed values are ```EU``` (Europe), ```NA``` (North America) and ```FE``` (Far East). **Remember**: if your users are located in NA and you are sending events trough the EU endpoint, users located in NA won't receive any notification.
 
 These are the values by default of an event when you create it:
 
@@ -126,6 +126,9 @@ These are the values by default of an event when you create it:
         }
     }
 ```
+### How to contribute
+
+Feel free to contribute by PR!
 
 That's all!
 
