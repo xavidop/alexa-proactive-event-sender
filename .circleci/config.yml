@@ -21,25 +21,32 @@ jobs:
       MAVEN_OPTS: -Xmx3200m
 
     steps:
+      # Checkout repo
       - checkout
+      # get artifact version
       - run: mvn help:evaluate -Dexpression=project.version -q -DforceStdout
           name: Update PATH and Define Environment Variable at Runtime
           command: |
             echo 'export VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)' >> $VERSION
             source $VERSION;
+          when: always
       # create jar!
       - run: mvn clean install package  -DskipTests
+      # store  artifacts!
       - store_artifacts:
           path: target/
+      # Run tests
       - run: mvn test
           name: Save test results
           command: |
             mkdir -p ~/test-results/junit/
             find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
+      # Store test results
       - store_test_results:
           path: ~/test-results
       - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
+
   publish-github-release:
     docker:
       - image: circleci/golang:1.8
