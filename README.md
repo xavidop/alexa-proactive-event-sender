@@ -74,7 +74,7 @@ To download project dependencies simply run the following in the project root:
     </dependency>
 ```
 
-### How use it
+### How to use it
 
 After added the dependecy you can use the client as below:
 
@@ -95,8 +95,7 @@ After added the dependecy you can use the client as below:
 ```
     
 * ```Environment```: whether the target events will be sent to the ```live``` or ```development``` endpoints. Allowed values are ```dev``` and ```pro```.
-* ```Region```: identifies the region of the Alexa endpoint to use to send proactive events. Allowed values are ```EU``` (Europe), ```NA``` (North America) and ```FE``` (Far East). **Remember**: if your users are located in NA and you are sending events trough the EU endpoint, users located in NA won't receive any notification. If you're using an Alexa Hosted Skill set the endpoint to NA.
-* ```message```: this is optional and lets you override the message property defined in [```skills.json```](./skills.json). If you pass the message through this argument, the same message will be sent to all skills configured in [```skills.json```](./skills.json).
+* ```Region```: identifies the region of the Alexa endpoint to use to send proactive events. Allowed values are ```EU``` (Europe), ```NA``` (North America) and ```FE``` (Far East). **Remember**: if your users are located in NA and you are sending events trough the EU endpoint, users located in NA won't receive any notification. If you're using an Alexa Hosted Skill set the endpoint to NA or EU.
 
 These are the values by default of an event when you create it:
 
