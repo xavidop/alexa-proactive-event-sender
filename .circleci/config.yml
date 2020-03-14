@@ -36,6 +36,12 @@ jobs:
           when: always
       - store_test_results:
           path: ~/test-results
+      - run:
+          name: Update PATH and Define Environment Variable at Runtime
+          command: |
+            echo 'export VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)' >> $VERSION
+            source $VERSION \;
+          when: always
 
       - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
 
