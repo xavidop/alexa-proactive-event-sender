@@ -97,11 +97,7 @@ public final class HttpUtilities {
 
             printResponse(response);
 
-            if (responseCode == HttpURLConnection.HTTP_ACCEPTED) {
-                return true;
-            } else {
-                return false;
-            }
+            return responseCode == HttpURLConnection.HTTP_ACCEPTED;
 
         } catch (Exception e) {
             e.printStackTrace();

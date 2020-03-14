@@ -75,7 +75,7 @@ public class RelevantAudience {
         if (other == this) {
             return true;
         }
-        if ((other instanceof RelevantAudience) == false) {
+        if (!(other instanceof RelevantAudience)) {
             return false;
         }
         RelevantAudience rhs = ((RelevantAudience) other);

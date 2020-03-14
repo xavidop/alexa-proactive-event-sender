@@ -131,7 +131,7 @@ public class ProactiveEvent {
         if (other == this) {
             return true;
         }
-        if ((other instanceof ProactiveEvent) == false) {
+        if (!(other instanceof ProactiveEvent)) {
             return false;
         }
         ProactiveEvent rhs = ((ProactiveEvent) other);

@@ -1,3 +1,5 @@
+package com.xavidop.alexa.test;
+
 import com.xavidop.alexa.client.AlexaProactiveEventSenderClient;
 import com.xavidop.alexa.model.event.ProactiveEvent;
 import com.xavidop.alexa.model.urlregion.Environment;

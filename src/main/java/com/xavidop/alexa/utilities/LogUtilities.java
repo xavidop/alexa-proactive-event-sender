@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class LogUtilities {
 
-	Logger logger;
+	private Logger logger;
 
 	public LogUtilities() {
 		logger = LogManager.getLogger(LogUtilities.class);

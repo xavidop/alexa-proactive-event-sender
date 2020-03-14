@@ -75,7 +75,7 @@ public class Payload {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Payload) == false) {
+        if (!(other instanceof Payload)) {
             return false;
         }
         Payload rhs = ((Payload) other);

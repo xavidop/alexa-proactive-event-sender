@@ -75,7 +75,7 @@ public class Event {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Event) == false) {
+        if (!(other instanceof Event)) {
             return false;
         }
         Event rhs = ((Event) other);

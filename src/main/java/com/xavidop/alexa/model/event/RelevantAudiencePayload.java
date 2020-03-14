@@ -23,7 +23,7 @@ public class RelevantAudiencePayload {
         if (other == this) {
             return true;
         }
-        if ((other instanceof RelevantAudiencePayload) == false) {
+        if (!(other instanceof RelevantAudiencePayload)) {
             return false;
         }
         RelevantAudiencePayload rhs = ((RelevantAudiencePayload) other);

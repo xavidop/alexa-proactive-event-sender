@@ -57,7 +57,7 @@ public class Creator {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Creator) == false) {
+        if (!(other instanceof Creator)) {
             return false;
         }
         Creator rhs = ((Creator) other);

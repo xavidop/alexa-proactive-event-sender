@@ -89,7 +89,7 @@ public class TokenResponse {
         if (other == this) {
             return true;
         }
-        if ((other instanceof TokenResponse) == false) {
+        if (!(other instanceof TokenResponse)) {
             return false;
         }
         TokenResponse rhs = ((TokenResponse) other);

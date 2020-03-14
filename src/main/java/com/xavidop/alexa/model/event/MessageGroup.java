@@ -93,7 +93,7 @@ public class MessageGroup {
         if (other == this) {
             return true;
         }
-        if ((other instanceof MessageGroup) == false) {
+        if (!(other instanceof MessageGroup)) {
             return false;
         }
         MessageGroup rhs = ((MessageGroup) other);
