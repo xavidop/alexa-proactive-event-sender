@@ -43,7 +43,7 @@ jobs:
           when: always
       - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
       - persist_to_workspace:
-          root: workspace
+          root: project
           paths:
             - target
 
