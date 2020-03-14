@@ -43,18 +43,20 @@ jobs:
           when: always
       - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
       - persist_to_workspace:
-          root: ./
+          root: workspace
+          paths:
+            - target
 
   publish-github-release:
     docker:
       - image: cibuilds/github:0.10
     steps:
       - attach_workspace:
-          at: ~/repo
+          at: /tmp/workspace
       - run:
           name: "Publish Release on GitHub"
           command: |
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${ARTIFACT_VERSION} ~/repo/target/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${ARTIFACT_VERSION} /tmp/workspace/target/
 
 
 workflows:
