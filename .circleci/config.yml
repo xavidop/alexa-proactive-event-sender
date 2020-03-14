@@ -21,31 +21,21 @@ jobs:
       MAVEN_OPTS: -Xmx3200m
 
     steps:
-      # Checkout repo
       - checkout
+
       # create jar!
       - run: mvn clean install package  -DskipTests
-      # store  artifacts!
       - store_artifacts:
           path: target/
-      # Run tests
       - run: mvn test
+      - run:
           name: Save test results
           command: |
             mkdir -p ~/test-results/junit/
             find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
-      # Store test results
       - store_test_results:
           path: ~/test-results
-      # Code Coverage
-      - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
-     # get artifact version
-      - run: mvn help:evaluate -Dexpression=project.version -q -DforceStdout
-          name: Update PATH and Define Environment Variable at Runtime
-          command: |
-            echo 'export VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)' >> $VERSION
-            source $VERSION \;
-          when: always
 
+      - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
 
