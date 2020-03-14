@@ -23,7 +23,7 @@ public class SimpleTest {
         event.getEvent().getPayload().getMessageGroup().getCreator().setName("Test");
 
         URLRegion urlRegion = new URLRegion();
-        urlRegion.setRegion(Region.EU);
+        urlRegion.setRegion(Region.NA);
         urlRegion.setEnvironment(Environment.DEV);
 
         boolean ok = client.sendProactiveEvent(event, urlRegion);
