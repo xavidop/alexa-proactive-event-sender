@@ -26,6 +26,8 @@ jobs:
       # run tests!
       #- run: cd poke_daily_poster && mvn integration-test
       # create jar!
-      - run: mvn clean install package
+      - run: mvn clean install package  -DskipTests
+      - run: mvn test
+      - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
       - store_artifacts:
           path: /target
