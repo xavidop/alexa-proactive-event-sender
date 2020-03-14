@@ -23,10 +23,10 @@ jobs:
     steps:
       - checkout
       - run: mvn help:evaluate -Dexpression=project.version -q -DforceStdout
-        name: Update PATH and Define Environment Variable at Runtime
-        command: |
-          echo 'export VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)' >> $VERSION
-          source $VERSION;
+          name: Update PATH and Define Environment Variable at Runtime
+          command: |
+            echo 'export VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)' >> $VERSION
+            source $VERSION;
       # create jar!
       - run: mvn clean install package  -DskipTests
       - store_artifacts:
