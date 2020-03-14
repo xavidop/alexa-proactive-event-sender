@@ -3,6 +3,21 @@
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
 version: 2
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - publish-github-release:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+
 jobs:
   build:
     docker:
@@ -39,9 +54,20 @@ jobs:
       - run:
           name: Update PATH and Define Environment Variable at Runtime
           command: |
-            echo 'export VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)' >> $VERSION
-            source $VERSION \;
+            echo 'export ARTIFACT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)' >> $ARTIFACT_VERSION
+            source $ARTIFACT_VERSION \;
           when: always
-
       - run: mvn cobertura:cobertura && bash <(curl -s https://codecov.io/bash)
+
+  publish-github-release:
+    docker:
+      - image: cibuilds/github:0.10
+    steps:
+      - attach_workspace:
+          at: ./artifacts
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${ARTIFACT_VERSION} ./artifacts/
+
 
