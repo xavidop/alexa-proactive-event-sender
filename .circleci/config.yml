@@ -26,6 +26,6 @@ jobs:
       # run tests!
       #- run: cd poke_daily_poster && mvn integration-test
       # create jar!
-      - run: mvn clean install package package -DskipTests
+      - run: mvn clean install package
       - store_artifacts:
           path: /target
