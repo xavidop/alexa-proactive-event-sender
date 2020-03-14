@@ -4,20 +4,6 @@
 #
 version: 2
 
-workflows:
-  version: 2
-  main:
-    jobs:
-      - build
-      - publish-github-release:
-          requires:
-            - build
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^\d+\.\d+\.\d+$/
-
 jobs:
   build:
     docker:
@@ -71,3 +57,11 @@ jobs:
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${ARTIFACT_VERSION} ./artifacts/
 
 
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - publish-github-release:
+          requires:
+            - build
